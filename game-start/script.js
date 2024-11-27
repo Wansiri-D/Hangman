@@ -1,5 +1,5 @@
 // ดึงปุ่มเลือกระดับความยากทั้งหมด
-const difficultyButtons = document.querySelectorAll(".difficulty");
+const difficultyButtons = document.querySelectorAll(".difficulty")
 
 // ดักจับการกดปุ่มเลือกระดับความยาก
 difficultyButtons.forEach(button => {
@@ -7,13 +7,13 @@ difficultyButtons.forEach(button => {
     event.preventDefault(); // ป้องกันพฤติกรรมเริ่มต้นของปุ่ม (เช่น การส่งฟอร์ม)
 
     // ลบคลาส active ออกจากปุ่มทั้งหมด
-    difficultyButtons.forEach(btn => btn.classList.remove("active"));
+    difficultyButtons.forEach(btn => btn.classList.remove("active"))
 
     // เพิ่มคลาส active ให้ปุ่มที่ถูกคลิก
-    this.classList.add("active");
+    this.classList.add("active")
 
     // เซ็ตค่าระดับความยากใน input ซ่อน
-    document.getElementById("difficulty").value = this.dataset.difficulty;
+    document.getElementById("difficulty").value = this.dataset.difficulty
   });
 });
 
@@ -26,7 +26,7 @@ document.getElementById("gameForm").addEventListener("submit", function (event) 
 
   // ตรวจสอบว่าผู้เล่นกรอกข้อมูลครบถ้วน
   if (playerName.trim() === "" || difficulty === "") {
-    alert("Please enter your name and select a difficulty level.");
+    alert("Please enter your name and select a difficulty level.")
     return;
   }
 
@@ -34,5 +34,5 @@ document.getElementById("gameForm").addEventListener("submit", function (event) 
   /*alert(`Welcome, ${playerName}! You have selected ${difficulty} difficulty.`);*/
 
   // เปลี่ยนเส้นทางไปหน้าจอยินดีต้อนรับ
-  window.location.href = `welcome.html?name=${encodeURIComponent(playerName)}&difficulty=${difficulty}`;
-});
+  window.location.href = `welcome.html?name=${encodeURIComponent(playerName)}&difficulty=${difficulty}`
+})
