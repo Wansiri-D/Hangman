@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hangman Instructions</title>
+  <link rel="stylesheet" href="instructions.css">
+</head>
+<body>
+  <div class="instructions-container">
+    <h1>How to Play Hangman</h1>
+    <p>Welcome to the classic word-guessing game! Here's how you play:</p>
+    
+    <h2>Objective</h2>
+    <p>Your goal is to guess the hidden word, one letter at a time, before the hangman is fully drawn.</p>
+    
+    <h2>Rules</h2>
+    <ul>
+      <li>A word will be chosen randomly and displayed as a series of blank spaces representing each letter in the word.</li>
+      <li>Guess a letter by clicking or typing it. If the letter is correct, it will appear in the correct position(s).</li>
+      <li>If the guessed letter is incorrect, a part of the hangman will be drawn.</li>
+      <li>You have a limited number of incorrect guesses (e.g., 6 chances) before the game ends.</li>
+      <li>If you guess the entire word correctly before running out of guesses, you win!</li>
+    </ul>
+    
+    <h2>Tips</h2>
+    <ul>
+      <li>Start with vowels (A, E, I, O, U) as they are commonly used in words.</li>
+      <li>Pay attention to the length of the word and guess letters that fit common patterns.</li>
+      <li>If you're unsure, guess letters that are frequently used in English, such as T, N, S, or R.</li>
+    </ul>
+    
+    <h2>Winning and Losing</h2>
+    <ul>
+      <li><strong>Win:</strong> Reveal all the letters of the word before the hangman is complete.</li>
+      <li><strong>Lose:</strong> The hangman is fully drawn before you guess the word.</li>
+    </ul>
+    
+    <button onclick="goBack()">Go Back</button>
+  </div>
+
+  <script>
+    // Function to go back to the previous page
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>

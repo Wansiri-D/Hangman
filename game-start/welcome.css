@@ -17,7 +17,8 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('letters.jpg');
+    /*background-image: url('letters.jpg');*/
+    background-color: black;
     background-size: cover;
     background-position: center;
     /*z-index: -1; /* ทำให้พื้นหลังอยู่ด้านล่าง */
@@ -28,13 +29,17 @@ body, html {
     bottom: -200px; /* เริ่มต้นอยู่นอกหน้าจอ */
     left: 50%;
     transform: translateX(-50%);
+    border: 5px solid #fff;
     width: 300px;
     padding: 20px;
-    background-color:rgba(128, 128, 128, 0.8);
+    background: #555;
+    /*background-color:rgba(128, 128, 128, 0.8);*/
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);*/
     text-align: center;
     /*z-index: 1;*/
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff;
+    animation: glow 1.5s infinite alternate;
     animation: float-up 2s ease-out forwards; /* เพิ่มแอนิเมชันสำหรับการเลื่อนขึ้น */
   }
   
