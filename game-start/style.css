@@ -1,4 +1,3 @@
-/* รีเซ็ต CSS */
 body, html {
   margin: 0;
   padding: 0;
@@ -22,7 +21,6 @@ body, html {
   z-index: -1; /* ทำให้พื้นหลังอยู่ด้านล่าง */
 }
 
-/* สไตล์ฟอร์ม */
 .form-container {
   background: white;
   padding: 20px 30px;
@@ -52,7 +50,6 @@ input[type="text"] {
   font-size: 16px;
 }
 
-/* สไตล์ปุ่มเลือกระดับความยาก */
 .difficulty-buttons {
   display: flex;
   justify-content: space-around;
@@ -80,7 +77,6 @@ button.difficulty.active {
   border: 2px solid #0056b3;
 }
 
-/* สไตล์ปุ่ม Submit */
 button[type="submit"] {
   padding: 10px 20px;
   background-color: #28a745;

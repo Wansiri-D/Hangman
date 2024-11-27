@@ -10,13 +10,13 @@ document.getElementById("difficultyDisplay").textContent = difficulty;
 // ฟังก์ชันสำหรับเริ่มเกม
 function startGame() {
   alert("Starting the game...")
-  // ที่นี่คุณสามารถเปลี่ยนเส้นทางไปยังหน้าเกมหลักหรือโหลดเกม
+  // เปลี่ยนเส้นทางไปยังหน้าเกมหลักหรือโหลดเกม
   window.location.href = "game.html" // เปลี่ยนเป็นหน้าของเกมจริง ๆ
 }
 
 // ฟังก์ชันแสดงคำแนะนำการเล่น
 function showInstructions() {
   alert("Here are the instructions for the game...")
-  // คุณสามารถเพิ่มการนำทางไปยังหน้าคำแนะนำหรือแสดงคำแนะนำในแบบป็อปอัพได้ที่นี่
+  // สามารถเพิ่มการนำทางไปยังหน้าคำแนะนำหรือแสดงคำแนะนำในแบบป็อปอัพได้ที่นี่
   window.location.href = "instructions.html" // หรือแสดงในโหมดป็อปอัพ
 }
