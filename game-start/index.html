@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Start Screen</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="script.js"></script>
+</head>
+<body>
+  <div id="background">
+    <!-- พื้นหลังแสดงรูป Hangman -->
+  </div>
+
+  <div class="form-container">
+    <!-- กล่องฟอร์มหลัก -->
+    <form id="gameForm">
+      <h1>Welcome to the Hangman!</h1>
+      <!-- ช่องให้ผู้เล่นกรอกชื่อ -->
+      <label for="playerName">Enter your name:</label>
+      <input type="text" id="playerName" name="playerName" required>
+
+      <!-- ปุ่มเลือกระดับความยาก -->
+      <p>Select Difficulty:</p>
+      <div class="difficulty-buttons">
+        <button type="button" class="difficulty" data-difficulty="Easy">Easy</button>
+        <button type="button" class="difficulty" data-difficulty="Medium">Medium</button>
+        <button type="button" class="difficulty" data-difficulty="Hard">Hard</button>
+      </div>
+      <!-- Input ที่เก็บค่าระดับความยากแบบซ่อน -->
+      <input type="hidden" id="difficulty" name="difficulty" required>
+
+      <!-- ปุ่ม Submit -->
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>
