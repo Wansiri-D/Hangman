@@ -1,185 +1,100 @@
-const wordDisplay =
-    document.querySelector(".word-display");
-const keyboardDiv =
-    document.querySelector(".keyboard");
-const hangmanImage =
-    document.querySelector(".hangman-box img");
-const guessesText =
-    document.querySelector(".guesses-text b");
-const gameModal =
-    document.querySelector(".game-modal");
-const playAgainBtn =
-    document.querySelector(".play-again");
-const timerDisplay =
-    document.querySelector(".timer");
+const wordDisplay = document.querySelector(".word-display")
+const keyboardDiv = document.querySelector(".keyboard")
+const hangmanImage = document.querySelector(".hangman-box img")
+const guessesText = document.querySelector(".guesses-text b")
+const wrongLettersSpan = document.getElementById("wrong-letters")
+const gameModal = document.querySelector(".game-modal")
+const playAgainBtn = document.querySelector(".play-again")
+const scoreDisplay = document.getElementById("score-display")
 
+let playerName = ""
+let playerScore = 0 // คะแนนเริ่มต้น
 const codingQuiz = [
-    {
-        word: "variable",
-        hint: "A placeholder for a value.",
-    },
-    {
-        word: "function",
-        hint: "A block of code that performs a specific task.",
-    },
-    {
-        word: "loop",
-        hint: "A programming structure that repeats a sequence of instructions until a specific condition is met.",
-  },
-    {
-        word: "array",
-        hint: "A data structure that stores a collection of elements.",
-  },
-    {
-        word: "boolean",
-        hint: "A data type that can have one of two values, true or false",
-  },
-    {
-        word: "conditional",
-        hint: "A statement that executes a block of code if a specified condition is true.",
-  },
-    {
-        word: "parameter",
-        hint: "A variable in a method definition.",
-    },
-    {
-        word: "algorithm",
-        hint: "A step-by-step procedure or formula for solving a problem.",
-  },
-    {
-        word: "debugging",
-        hint: "The process of finding and fixing errors in code.",
-  },
-    {
-        word: "syntax",
-        hint: "The rules that govern the structure ofstatements in a programming language.",
-  },
+    { word: "variable", hint: "A placeholder for a value." },
+    { word: "function", hint: "A block of code that performs a specific task." },
+    { word: "loop", hint: "Repeats a sequence of instructions." },
 ];
 
-let currentWord, correctLetters, wrongGuessCount, timerInterval;
-const maxGuesses = 6;
-const gameTimeLimit = 30;
+let currentWord = ""
+let correctLetters = []
+let wrongLetters = []
+let wrongGuessCount = 0
+const maxGuesses = 6
+
+document.getElementById("start-game").addEventListener("click", () => {
+    playerName = document.getElementById("player-name").value.trim()
+    if (!playerName) return alert("Please enter your name!")
+    document.getElementById("player-display").innerText = playerName
+    document.querySelector(".player-info").style.display = "none"
+    document.querySelector(".container").style.display = "flex"
+    resetGame()
+})
 
 const resetGame = () => {
-    //Resetting all game variables and UI elements
-    correctLetters = [];
-    wrongGuessCount = 0;
-    hangmanImage.src =
-        `images/0.png`;
-    guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`;
-    keyboardDiv
-        .querySelectorAll("button")
-        .forEach((btn) => (btn.disabled = false));
-    wordDisplay.innerHTML = currentWord
-        .split("")
-        .map(() => `<li class="letter"></li>`)
-        .join("");
-    clearInterval(timerInterval);
-    startTimer();
-    gameModal.classList.remove("show");
+    const randomIndex = Math.floor(Math.random() * codingQuiz.length)
+    const { word, hint } = codingQuiz[randomIndex]
+    currentWord = word.toUpperCase()
+    correctLetters = []
+    wrongLetters = []
+    wrongGuessCount = 0
+
+    // อัปเดต UI
+    wordDisplay.innerHTML = currentWord.split("").map(() => `<li class="letter">_</li>`).join("")
+    guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
+    wrongLettersSpan.innerText = ""
+    hangmanImage.src = "images/0.png"
+    document.querySelector(".hint-text b").innerText = hint
+    renderKeyboard()
 };
 
-const getRandomWord = () => {
-    const { word, hint } =
-        codingQuiz[Math.floor(Math.random() * codingQuiz.length)];
-    currentWord = word;
-    console.log(word);
-    document.querySelector(".hint-text b")
-        .innerText = hint;
-    resetGame();
-};
-
-const startTimer = () => {
-    let timeLeft = gameTimeLimit;
-    timerInterval = setInterval(() => {
-        timeLeft--;
-        timerDisplay.innerText = `Time left:
-    ${Math.floor(timeLeft / 60)}:${timeLeft % 60 < 10 ? "0" : ""
-            }${timeLeft % 60}`;
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            gameOver(false);
-        }
-    }, 1000);
-};
-const gameOver = (isVictory) => {
-    setTimeout(() => {
-        clearInterval(timerInterval);
-        const modalText = isVictory
-            ? ` Yeah! You found the word:`
-            : `You Loss! The correct word was:`;
-        gameModal.querySelector(
-            "p"
-        ).innerHTML =
-            `${modalText} <b>${currentWord}</b>`;
-        gameModal.classList.add("show");
-    }, 300);
-};
-const initGame = (button, clickedLetter) => {
-    if (currentWord.includes(clickedLetter)) {
-        [...currentWord].forEach((letter, index) => {
-            if (letter === clickedLetter) {
-                correctLetters.push(letter);
-                wordDisplay.querySelectorAll("li")[index]
-                    .innerText = letter;
-                wordDisplay.querySelectorAll("li")[index]
-                    .classList.add("guessed");
-            }
-        });
-    } else {
-        wrongGuessCount++;
-        if (wrongGuessCount === 0) {
-            hangmanImage.src =
-                `images/0.png`;
-        }
-        if (wrongGuessCount === 1) {
-            hangmanImage.src =
-                `images/1.png`;
-        }
-        if (wrongGuessCount === 2) {
-            hangmanImage.src =
-
-                `images/2.png`;
-        }
-        if (wrongGuessCount === 3) {
-            hangmanImage.src =
-                `images/3.png`;
-        }
-        if (wrongGuessCount == 4) {
-            hangmanImage.src =
-                `images/4.png`;
-        }
-        if (wrongGuessCount === 5) {
-            hangmanImage.src =
-                `images/5.png`;
-        }
-        if (wrongGuessCount === 6) {
-            hangmanImage.src =
-                `images/6.png`;
-        }
-        // hangmanImage.src = 
-        `images/hangman-${wrongGuessCount}.svg`;
-    }
-
-    button.disabled = true;
-    guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`;
-
-    if (wrongGuessCount === maxGuesses)
-        return gameOver(false);
-    if (correctLetters.length === currentWord.length)
-        return gameOver(true);
-};
-
-//Creating keyboard buttons 
-//and adding event listerers
-for (let i = 97; i <= 122; i++) {
-    const button = document.createElement("button");
-    button.innerText = String.fromCharCode(i);
-    keyboardDiv.appendChild(button);
-    button.addEventListener("click", (e) =>
-        initGame(e.target, String.fromCharCode(i))
-    );
+const renderKeyboard = () => {
+    keyboardDiv.innerHTML = ""
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach((letter) => {
+        const button = document.createElement("button")
+        button.innerText = letter
+        button.addEventListener("click", () => handleGuess(button, letter))
+        keyboardDiv.appendChild(button)
+    })
 }
 
-getRandomWord();
-playAgainBtn.addEventListener("click", getRandomWord);
+const handleGuess = (button, letter) => {
+    button.disabled = true
+
+    if (currentWord.includes(letter)) {
+        [...currentWord].forEach((char, index) => {
+            if (char === letter) {
+                correctLetters.push(char);
+                wordDisplay.querySelectorAll("li")[index].innerText = char
+            }
+        })
+        if (correctLetters.length === currentWord.length) endGame(true)
+    } else {
+        wrongLetters.push(letter)
+        wrongGuessCount++
+        wrongLettersSpan.innerText = wrongLetters.join(", ")
+        hangmanImage.src = `images/${wrongGuessCount}.png`;
+        guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
+        if (wrongGuessCount === maxGuesses) endGame(false)
+    }
+};
+
+const endGame = (isWin) => {
+    if (isWin) {
+        playerScore += 10
+    } else {
+        playerScore -= 5
+        if (playerScore < 0) playerScore = 0
+    }
+    scoreDisplay.innerText = playerScore
+
+    const message = isWin
+        ? `You found the word: <b>${currentWord}</b>`
+        : `Game Over! The word was: <b>${currentWord}</b>`
+    gameModal.querySelector("p").innerHTML = message
+    gameModal.classList.add("show")
+}
+
+playAgainBtn.addEventListener("click", () => {
+    gameModal.classList.remove("show")
+    resetGame()
+})
