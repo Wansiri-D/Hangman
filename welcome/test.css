@@ -1,0 +1,9 @@
+.hidden {
+    display: none;
+  }
+  
+  #welcome-page, #instructions-page, #game-page {
+    text-align: center;
+    margin: 20px;
+  }
+  

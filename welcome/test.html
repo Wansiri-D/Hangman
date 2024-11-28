@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hangman Game</title>
+  <link rel="stylesheet" href="test.css">
+  <script type="module" src="test.js"></script>
+</head>
+<body>
+  <!-- Welcome Page -->
+  <div id="welcome-page">
+    <div id="background">
+      <!-- Background showing Hangman image -->
+    </div>
+    
+    <div id="floating-box">
+      <h1>Hi, <span id="playerNameDisplay"></span>!</h1>
+      <p>Difficulty Level: <span id="difficultyDisplay"></span></p>
+      <p>If you haven't played the Hangman game before, click instructions below.</p>
+      <button id="instructions-button">Instructions</button>
+      <p>Are you ready? Let's go!</p>
+      <button id="start-button">Start Game</button>
+    </div>
+  </div>
+
+  <!-- Instructions Page -->
+  <div id="instructions-page" class="hidden">
+    <h2>Instructions</h2>
+    <p>Guess the word by selecting letters. You lose a chance with every incorrect guess. Save the hangman!</p>
+    <button id="back-to-welcome">Back to Welcome</button>
+  </div>
+
+  <!-- Game Page -->
+  <div id="game-page" class="hidden">
+    <h2>Game Page</h2>
+    <p>Welcome to the game, <span id="gamePlayerName"></span>! Difficulty: <span id="gameDifficulty"></span></p>
+    <p>Game will be here soon...</p>
+  </div>
+</body>
+</html>

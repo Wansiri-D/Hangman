@@ -7,11 +7,18 @@ const difficulty = urlParams.get("difficulty")
 document.getElementById("playerNameDisplay").textContent = playerName
 document.getElementById("difficultyDisplay").textContent = difficulty
 
+// Set href attributes dynamically
+const startGameLink = document.getElementById("start-game-link");
+startGameLink.href = `game-play/game.html?name=${encodeURIComponent(playerName)}&difficulty=${encodeURIComponent(difficulty)}`;
+
+const instructionsLink = document.getElementById("instructions-link");
+instructionsLink.href = "instructions.html"; // Link to your instructions page
+
 // จัดการปุ่มเริ่มเกม
-document.getElementById("start-button").addEventListener("click", function () {
+// document.getElementById("start-button").addEventListener("click", function () {
   // เปลี่ยนเส้นทางไปยังหน้าเริ่มเกม
-  window.location.href = `game-play/game.html?name=${encodeURIComponent(playerName)}&difficulty=${difficulty}`
-});
+  // window.location.href = `game-play/game.html?name=${encodeURIComponent(playerName)}&difficulty=${difficulty}`
+//});
 
 /*// จัดการปุ่มคำแนะนำการเล่น
 document.getElementById("instructions-button").addEventListener("click", function () {
