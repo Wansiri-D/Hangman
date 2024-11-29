@@ -8,7 +8,7 @@ const playAgainBtn = document.querySelector(".play-again")
 const scoreDisplay = document.getElementById("score-display")
 
 let playerName = ""
-let playerScore = 0 // คะแนนเริ่มต้น
+let playerScore = 0
 const codingQuiz = [
     { word: "variable", hint: "A placeholder for a value." },
     { word: "function", hint: "A block of code that performs a specific task." },
@@ -47,6 +47,7 @@ const resetGame = () => {
     renderKeyboard()
 };
 
+    // keyboard
 const renderKeyboard = () => {
     keyboardDiv.innerHTML = ""
     "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach((letter) => {

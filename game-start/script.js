@@ -30,9 +30,6 @@ document.getElementById("gameForm").addEventListener("submit", function (event) 
     return;
   }
 
-  // แสดงข้อความต้อนรับ
-  /*alert(`Welcome, ${playerName}! You have selected ${difficulty} difficulty.`);*/
-
   // เปลี่ยนเส้นทางไปหน้าจอยินดีต้อนรับ
   window.location.href = `welcome.html?name=${encodeURIComponent(playerName)}&difficulty=${difficulty}`
 })
