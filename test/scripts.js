@@ -1,125 +1,117 @@
-const wordDisplay = document.querySelector(".word-display")
-const keyboardDiv = document.querySelector(".keyboard")
-const hangmanImage = document.querySelector(".hangman-box img")
-const guessesText = document.querySelector(".guesses-text b")
-const wrongLettersSpan = document.getElementById("wrong-letters")
-const gameModal = document.querySelector(".game-modal")
-const playAgainBtn = document.querySelector(".play-again")
-const viewScoreBtn = document.querySelector(".view-score")
-const gameResultTitle = document.getElementById("game-result-title")
-const gameResultWord = document.getElementById("game-result-word")
-const wrongGuessesCount = document.getElementById("wrong-guesses-count")
-const scoreDisplay = document.getElementById("score-display")
-
-let playerName = ""
+let playerName = ''
 let playerScore = 0
-const codingQuiz = [
-    { word: "variable", hint: "A placeholder for a value." },
-    { word: "function", hint: "A block of code that performs a specific task." },
-    { word: "loop", hint: "Repeats a sequence of instructions." },
-];
-
-let currentWord = ""
+let currentWord = ''
 let correctLetters = []
 let wrongLetters = []
 let wrongGuessCount = 0
 const maxGuesses = 6
 
-document.getElementById("start-game").addEventListener("click", () => {
-    playerName = document.getElementById("player-name").value.trim()
-    if (!playerName) return alert("Please enter your name!")
-    document.getElementById("player-display").innerText = playerName
-    document.querySelector(".player-info").style.display = "none"
-    document.querySelector(".container").style.display = "flex"
-    resetGame()
-})
+const codingQuiz = [
+    { word: 'variable', hint: 'A placeholder for a value.' },
+    { word: 'function', hint: 'A block of code that performs a specific task.' },
+    { word: 'loop', hint: 'Repeats a sequence of instructions.' },
+];
 
+// Event listener for starting the game
+document.getElementById('start-game').addEventListener('click', () => {
+    const nameInput = document.getElementById('player-name').value.trim()
+    if (!nameInput) {
+        alert('Please enter your name!')
+        return;
+    }
+
+    playerName = nameInput;
+    toggleVisibility('.player-info', '.container')
+    resetGame()
+});
+
+// Reset the game
 const resetGame = () => {
     const randomIndex = Math.floor(Math.random() * codingQuiz.length)
     const { word, hint } = codingQuiz[randomIndex]
+
     currentWord = word.toUpperCase()
     correctLetters = []
     wrongLetters = []
     wrongGuessCount = 0
 
-    wordDisplay.innerHTML = currentWord.split("").map(() => `<li class="letter">_</li>`).join("")
-    guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
-    wrongLettersSpan.innerText = ""
-    hangmanImage.src = "images/0.png"
-    document.querySelector(".hint-text b").innerText = hint
+    updateUI(hint);
+};
+
+// Update the UI for a new game
+const updateUI = (hint) => {
+    document.querySelector('.word-display').innerHTML = currentWord
+        .split('')
+        .map(() => '<li class="letter">_</li>')
+        .join('');
+    document.querySelector('.guesses-text b').innerText = `${wrongGuessCount} / ${maxGuesses}`
+    document.getElementById('wrong-letters').innerText = ''
+    document.querySelector('.hint-text b').innerText = hint
+    document.querySelector('.hangman-box img').src = 'images/0.png'
     renderKeyboard()
 };
 
+// Render the keyboard
 const renderKeyboard = () => {
-    keyboardDiv.innerHTML = ""
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach((letter) => {
-        const button = document.createElement("button")
+    const keyboardDiv = document.querySelector('.keyboard')
+    keyboardDiv.innerHTML = ''
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach((letter) => {
+        const button = document.createElement('button')
         button.innerText = letter
-        button.addEventListener("click", () => handleGuess(button, letter))
-        keyboardDiv.appendChild(button)
-    })
-}
+        button.addEventListener('click', () => handleGuess(button, letter))
+        keyboardDiv.appendChild(button);
+    });
+};
 
+// Handle a guess
 const handleGuess = (button, letter) => {
-    button.disabled = true
+    button.disabled = true;
 
     if (currentWord.includes(letter)) {
         [...currentWord].forEach((char, index) => {
             if (char === letter) {
                 correctLetters.push(char);
-                wordDisplay.querySelectorAll("li")[index].innerText = char
+                document.querySelectorAll('.word-display .letter')[index].innerText = char;
             }
-        })
-        if (correctLetters.length === currentWord.length) endGame(true)
+        });
+
+        if (correctLetters.length === currentWord.length) endGame(true);
     } else {
-        wrongLetters.push(letter)
-        wrongGuessCount++
-        wrongLettersSpan.innerText = wrongLetters.join(", ")
-        hangmanImage.src = `images/${wrongGuessCount}.png`
-        guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
-        if (wrongGuessCount === maxGuesses) endGame(false)
+        wrongLetters.push(letter);
+        wrongGuessCount++;
+        document.getElementById('wrong-letters').innerText = wrongLetters.join(', ');
+        document.querySelector('.hangman-box img').src = `images/${wrongGuessCount}.png`;
+        document.querySelector('.guesses-text b').innerText = `${wrongGuessCount} / ${maxGuesses}`;
+        if (wrongGuessCount === maxGuesses) endGame(false);
     }
 };
 
+// End the game
 const endGame = (isWin) => {
-    const currentDate = new Date().toLocaleString()
+    playerScore = isWin ? playerScore + 10 : Math.max(0, playerScore - 5);
+
     const resultMessage = isWin
-        ? `You Win! The word was: <b>${currentWord}</b>`
-        : `Game Over! The word was: <b>${currentWord}</b>`
-    gameResultTitle.innerText = isWin ? "You Win!" : "Game Over!"
-    gameResultWord.innerHTML = currentWord
-    wrongGuessesCount.innerText = wrongGuessCount
+        ? `Congratulations! You guessed the word: ${currentWord}`
+        : `Game Over! The correct word was: ${currentWord}`;
 
-    if (isWin) {
-        playerScore += 10
-    } else {
-        playerScore -= 5
-        if (playerScore < 0) playerScore = 0
-    }
+    document.getElementById('game-result-message').innerText = resultMessage;
+    toggleVisibility('.container', '#game-over');
+};
 
-    scoreDisplay.innerText = playerScore
+// Toggle visibility of elements
+const toggleVisibility = (...selectors) => {
+    selectors.forEach((selector) => {
+        document.querySelector(selector).classList.toggle('hidden');
+    });
+};
 
-    const gameData = {
-        playerName,
-        wrongGuessCount,
-        wordLength: currentWord.length,
-        date: currentDate,
-        result: isWin ? "Win" : "Lose"
-    }
+// Event listener for play again
+document.getElementById('play-again').addEventListener('click', () => {
+    toggleVisibility('#game-over', '.container');
+    resetGame();
+});
 
-    // Save game data to localStorage
-    const previousGames = JSON.parse(localStorage.getItem("hangman-scores")) || []
-    previousGames.push(gameData)
-    localStorage.setItem("hangman-scores", JSON.stringify(previousGames))
-
-    gameModal.classList.add("show")
-}
-
-playAgainBtn.addEventListener("click", () => {
-    gameModal.classList.remove("show")
-    resetGame()
-})
-
-viewScoreBtn.addEventListener("click", () => {
-    window.location.href = "score.html"  // You can create a new page to view scores
-})
+// Event listener for viewing the scoreboard
+document.getElementById('view-scoreboard').addEventListener('click', () => {
+    window.location.href = 'scoreboard.html';
+});

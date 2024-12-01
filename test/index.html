@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hangman Game</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="scripts.js" defer></script>
+    <script type="module" src="scripts.js"></script>
 </head>
 <body>
     <!-- Player Info -->
@@ -22,37 +22,34 @@
         <h3>Score: <span id="score-display">0</span></h3>
     </div>
 
-    <!-- Game Modal -->
-    <div class="game-modal" id="over">
-        <div class="content">
-            <h4 id="game-result-title">Game Over!</h4>
-            <p>The correct word was: <b id="game-result-word"></b></p>
-            <p>Incorrect guesses: <b id="wrong-guesses-count">0</b></p>
-            <button class="play-again">Play Again</button>
-            <a href="/score-view/score.html">
-            <button class="view-score">View Score</button></a>
-        </div>
+<!-- Main Game Container -->
+<div class="container hidden">
+    <div class="hangman-box">
+        <img src="/game-play/images/0.png" alt="hangman-img" />
+        <h1>Hangman Game</h1>
     </div>
+    <div class="game-box">
+        <ul class="word-display"></ul>
+        <h4 class="hint-text">
+            Hint: <b></b>
+        </h4>
+        <h4 class="guesses-text">
+            Incorrect guesses: <b>0 / 6</b>
+        </h4>
+        <div class="wrong-guesses">
+            Wrong Letters: <span id="wrong-letters"></span>
+        </div>
+        <div class="keyboard"></div>
+    </div>
+</div>
 
-    <!-- Main Game Container -->
-    <div class="container">
-        <div class="hangman-box">
-            <img src="images/0.png" alt="hangman-img" />
-            <h1>Hangman Game</h1>
-        </div>
-        <div class="game-box">
-            <ul class="word-display"></ul>
-            <h4 class="hint-text">
-                Hint: <b></b>
-            </h4>
-            <h4 class="guesses-text">
-                Incorrect guesses: <b>0 / 6</b>
-            </h4>
-            <div class="wrong-guesses">
-                Wrong Letters: <span id="wrong-letters"></span>
-            </div>
-            <div class="keyboard"></div>
-        </div>
+    <!-- Game Over Section -->
+    <div class="game-over hidden" id="game-over">
+        <h2>Game Over!</h2>
+        <p id="game-result-message"></p>
+        <button id="play-again">Play Again</button>
+        <a href="/score-view/score.html">
+        <button id="view-scoreboard">View Scoreboard</button></a>
     </div>
 </body>
 </html>
