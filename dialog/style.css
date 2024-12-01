@@ -1,0 +1,135 @@
+Simple styles for the Hangman game UI /
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f7f7f7;
+}
+
+h1 {
+    color: #333;
+}
+
+h2 {
+    color: #555;
+}
+
+.container {
+    margin: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+input, select {
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.tabs {
+    list-style-type: none;
+    padding: 0;
+}
+
+.tabs li {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+.tabs li.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+#hangmanImage {
+    width: 100px;
+    height: 100px;
+}
+
+#keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.keyboard button {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    font-size: 18px;
+}
+
+.game-view {
+    margin-top: 30px;
+}
+
+.notification {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+
+.notification.show {
+    display: block;
+}
+
+
+/* Add to your existing CSS
+
+/ Hangman image size */
+#hangmanImage {
+    width: 100px;
+    height: 100px;
+    margin-top: 20px;
+}
+
+/*Keyboard style */
+.keyboard button {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    font-size: 18px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.keyboard button:hover {
+    background-color: #ddd;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="game-logic.js" defer></script>
+    <script type="module" src="script2.js"></script>
+</head>
+
+<body>
+    <h1>Hangman Game</h1>
+
+    <!-- Dialog container (initially hidden) -->
+    <div class="dialog-container hide">
+        <dialog>
+            <p>Dialog</p>
+            <button id="close-dialog">Close</button>
+        </dialog>
+    </div>
+
+    <!-- Button to show dialog -->
+    <button id="show-dialog">Show dialog</button>
+
+    <h2>Tabs</h2>
+    <nav>
+        <ul class="tabs">
+            <li class="tab active" data-target="start-tab-content">Game view</li>
+            <li class="tab" data-target="play-tab-content">Game over View</li>
+            <li class="tab" data-target="score-tab-content">Score screen</li>
+        </ul>
+    </nav>
+
+    <div class="tab-content" id="start-tab-content">
+        <div class="container">
+            <h1>Enter Your Name</h1>
+            <input type="text" id="nameInput" placeholder="Enter your name" required>
+
+            <h2>Select Difficulty</h2>
+            <select id="difficultySelect">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+
+            <button id="submitButton">Submit</button>
+            <p id="message"></p>
+            <button id="startGameBtn">Start New Game</button>
+        </div>
+    </div>
+
+    <div class="tab-content hide" id="play-tab-content">
+        <div class="container">
+            <h1>Hangman Game</h1>
+            <div class="hangman-box">
+                <img src="images/0.png" alt="hangman-img" id="hangmanImage" />
+            </div>
+            <div class="game-box">
+                <ul class="word-display" id="word-display"></ul>
+                <button class="hint-btn">Hint <b><span id="hint-btn"></span></b></button>
+                <h4 class="guesses-text">Incorrect guesses: <b><span id="incorrect-guesses">0</span> / 6</b></h4>
+                <div id="keyboard" class="keyboard"></div>
+            </div>
+            <div class="game-view">
+                <h1>Game View</h1>
+                <button id="startNewGameBtn">Start New Game</button>
+                <button id="viewScores">View Scores</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content hide" id="score-tab-content">
+        <div class="container">
+            <h1>View Scores</h1>
+            <p>Your highest score is: <span id="highest-score">0</span></p>
+        </div>
+    </div>
+
+    <!-- Notification for showing messages -->
+    <div id="notification" class="notification hide">Your highest score is: <span id="score-value"></span></div>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+
+</html>
