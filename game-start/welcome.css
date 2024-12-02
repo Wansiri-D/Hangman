@@ -37,9 +37,10 @@ body, html {
     border-radius: 10px;
     /*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);*/
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     /*z-index: 1;*/
-    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff;
-    animation: glow 1.5s infinite alternate;
+    /*box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff;*/
+    /*animation: glow 1.5s infinite alternate;*/
     animation: float-up 2s ease-out forwards; /* เพิ่มแอนิเมชันสำหรับการเลื่อนขึ้น */
   }
   
