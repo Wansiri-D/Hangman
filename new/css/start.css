@@ -1,0 +1,233 @@
+
+/* Welcome text */
+.welcome-text h1 {
+    font-size: 2.5rem;
+    transition: transform 0.5s ease;
+    text-align: center;
+  }
+  .welcome-text h1:hover {
+    transform: translateY(30px); /* Moves down the text 30px when hovered */
+    cursor: pointer;
+  }
+  .Hangman-img {
+    width: 120px;
+    height: 120px;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  /* Start page container */
+  .start-page {
+    text-align: center;
+    background: black;
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.2rem;
+    margin-top: 20px;
+  }
+  
+  .hide {
+    display: none;
+  }
+  
+  
+  /* Img Avatar */
+  .option img {
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    margin: 5px;
+    transition: transform 0.3s ease; /* Smooth transition for the image */
+  }
+  .option img:hover {
+    transform: translateX(15px); /* Moves the image to the right when hovered */
+  }
+  .clickable-image.selected {
+    /* When an image Avatar is clicked and selected */
+    border: 3px solid red;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  }
+  #avatar-character img {
+    /* Display area for selected Avatar */
+    width: 140px;
+    height: 140px;
+    margin-top: 20px;
+  }
+  
+  /* Finish button */
+  #finish {
+    margin-top: 20px;
+    background-color: green;
+    color: white;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+  }
+  #finish:hover {
+    background-color: darkgreen;
+  }
+  
+  /* Display for game message */
+  #game-message {
+    margin-top: 20px;
+    font-size: 1.2rem;
+  }
+  
+  /* Start game button */
+  #start-game {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  #start-game:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Dialog */
+  dialog {
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  #dialog-close {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  #dialog-close:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Media Queries for Responsive Design */
+  
+  /* 320px to 576px (Small Mobile) */
+  @media (max-width: 576px) {
+    .start-page {
+      width: 90%;
+      padding: 15px;
+    }
+    .welcome-text h1 {
+      font-size: 1.8rem;
+    }
+    .option img {
+      width: 70px;
+      height: 70px;
+    }
+    #avatar-character img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  
+  /* 577px to 768px (Mobile to Small Tablet) */
+  @media (min-width: 577px) and (max-width: 768px) {
+    .start-page {
+      width: 85%;
+      padding: 15px;
+    }
+    .welcome-text h1 {
+      font-size: 2rem;
+    }
+    .option img {
+      width: 80px;
+      height: 80px;
+    }
+    #avatar-character img {
+      width: 120px;
+      height: 120px;
+    }
+  }
+  
+  /* 769px to 992px (Medium Tablet) */
+  @media (min-width: 769px) and (max-width: 992px) {
+    .start-page {
+      width: 75%;
+      padding: 20px;
+    }
+    .welcome-text h1 {
+      font-size: 2.2rem;
+    }
+    .option img {
+      width: 90px;
+      height: 90px;
+    }
+    #avatar-character img {
+      width: 130px;
+      height: 130px;
+    }
+  }
+  
+  /* 993px to 1200px (Desktop) */
+  @media (min-width: 993px) and (max-width: 1200px) {
+    .start-page {
+      width: 70%;
+      padding: 25px;
+    }
+    .welcome-text h1 {
+      font-size: 2.5rem;
+    }
+    .option img {
+      width: 100px;
+      height: 100px;
+    }
+    #avatar-character img {
+      width: 140px;
+      height: 140px;
+    }
+  }
+  
+  /* 1201px and above (Large Screens) */
+  @media (min-width: 1201px) {
+    .start-page {
+      width: 60%;
+      padding: 30px;
+    }
+    .welcome-text h1 {
+      font-size: 3rem;
+    }
+    .option img {
+      width: 110px;
+      height: 110px;
+    }
+    #avatar-character img {
+      width: 150px;
+      height: 150px;
+    }
+  
+  body {
+    font-family: "Indie Flower", sans-serif;
+    text-align: center;
+  }
+  
+  #start-view {
+    margin-top: 50px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+  
+  }
+  }

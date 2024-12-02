@@ -1,0 +1,72 @@
+body {
+	margin: 0;
+}
+* {
+	box-sizing: border-box;
+}
+
+.card-grid {
+	border: 1px solid black;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.card {
+	border: 1px solid black;
+	border-radius: 0.5em;
+	margin: 0.25em;
+	padding: 0.25em;
+	/* width: 12em; */
+}
+
+
+.tabs {
+	display: flex;
+	list-style-type: none;
+	background-color: rgb(253, 154, 204);
+	padding: 0;
+	margin: 0;
+}
+.tabs .tab {
+	border: 1px solid rgb(132, 43, 87);
+	margin: 0.2em;
+	padding: 0.5em 1.2em;
+	cursor: pointer;
+	/* flex-grow: 1;
+	flex-basis: 0; */
+}
+.tabs .tab.active {
+	background-color: rgb(240, 202, 221);
+}
+.tab-content-container {
+	border: 1px solid black;
+	min-height: 8em;
+}
+.tab-content {
+	padding: 0.5em;
+}
+.tab-content.hidden {
+	display: none;
+}
+
+
+dialog {
+	box-shadow: 0 0 1em 0.25em purple;
+	padding: 4em;
+	position: relative;
+}
+.dialog-container {
+	background-color: rgba(255, 105, 180, 0.5);
+	position: fixed;
+	width: 100%;
+	/* 100vw fungerar inte eftersom bredden på vertikal scroll bar läggs till, så vi får en horisontell scroll bar */
+	height: 100vh;
+	left: 0;
+	top: 0;
+	display: flex;
+	justify-content: center;
+
+}
+.hide {
+	display: none;
+}

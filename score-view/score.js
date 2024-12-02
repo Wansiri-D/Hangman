@@ -15,11 +15,11 @@ const loadScoreboard = () => {
     scoreboard.forEach(entry => {
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${entry.player-display}</td>
-            <td>${entry.wrong-guesses-count}</td>
+            <td>${entry.playerName}</td>
+            <td>${entry.wrongGuessCount}</td>
             <td>${entry.wordLength}</td>
             <td>${entry.date}</td>
-            <td>${entry.result}</td>
+            <td>${entry.playerScore}</td>
         `;
         scoreboardContainer.appendChild(row);
     });

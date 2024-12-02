@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> DOM designmönster </title>
+	<link rel="stylesheet" href="style.css">
+	<script type="module" src="script.js"></script>
+</head>
+<body>
+	<h1> DOM designmönster</h1>
+
+	<div class="dialog-container hide">
+		<dialog>
+			<p>Dialog</p>
+			<button id="close-dialog"> Stäng </button>
+		</dialog>
+	</div>
+
+	<div>
+		<button id="show-dialog"> Visa dialog </button>
+	</div>
+
+
+	<h2> Flikar </h2>
+	<nav>
+		<ul class="tabs">
+			<li class="tab active"> Start </li>
+			<li class="tab"> Kalender </li>
+			<li class="tab"> Öppettider </li>
+		</ul>
+	</nav>	
+	<div class="tab-content-container">
+		<div class="tab-content"> Välkommen till Handelsakademin! </div>
+		<div class="tab-content hidden"> Här kan du se alla spännande event vi ordnar. </div>
+		<div class="tab-content hidden"> Våra öppettider är: dygnet runt. </div>
+	</div>
+
+	<section>
+		<h2> Alla deckare </h2>
+		<button id="card-price-button"> Öka priset med 10% </button>
+		<div class="card-grid">
+			<!-- <section class="card">
+				<h3> Boktitel </h3>
+				<p> Författare </p>
+				<p> Pris </p>
+			</section> -->
+		</div>
+	</section>
+
+</body>
+</html>
