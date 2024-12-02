@@ -1,0 +1,138 @@
+/* Game View */
+
+#game-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto 0;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+  .hide {
+    display: none;
+  }
+  
+  .game-info {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .game-info h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  #word-display {
+    font-size: 2rem;
+    letter-spacing: 10px;
+    margin: 10px 0;
+    color: #fff;
+  }
+  
+  .enter-letter {
+    color: #fff;
+    font-size: 1.4em;
+  }
+  
+  #incorrect-guesses {
+    font-size: 1.2rem;
+    color: #d9534f;
+  }
+  
+  label {
+    font-size: 1.3rem;
+    margin-top: 10px;
+    display: block;
+  }
+  
+  #guess-input {
+    font-size: 1rem;
+    text-align: center;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 10px;
+  }
+  
+  button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  
+  .game-actions {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  /* hangman figure */
+  #hangman-figure-section {
+    margin-top: 30px;
+  }
+  
+  .hangman-figure {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Hide figure */
+  #hangman-figure-section .hangman-figure path,
+  #hangman-figure-section .hangman-figure ellipse {
+    visibility: hidden;
+  }
+  
+  /* show parts of the figure when its wrong guess */
+  .hangman-figure.wrong-guess-1 #scaffold,
+  .hangman-figure.wrong-guess-2 #legs,
+  .hangman-figure.wrong-guess-3 #arms,
+  .hangman-figure.wrong-guess-4 #body,
+  .hangman-figure.wrong-guess-5 #head {
+    visibility: visible;
+  }
+  
+  /*dialog*/
+  
+  .custom-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+  }
+  
+  .custom-dialog button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .custom-dialog button:hover {
+    background-color: #45a049;
+  }

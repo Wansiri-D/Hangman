@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hangman</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="script.js"></script>
+  </head>
+  
+  <body>
+    <nav>
+      <ul>
+        <li id="game-start">Start</li>
+        <li id="game-view">Play Game</li>
+        <li id="game-score">View Scores</li>
+      </ul>
+    </nav>
+
+    <!-- หน้าจอเริ่มเกม -->
+    <div id="start-screen" class="screen">
+        <h1>Welcome to Hangman Game!</h1>
+        <label for="player-name">Enter your name: </label>
+        <input type="text" id="player-name" required>
+        <br>
+        <p>Select Difficulty:</p>
+        <input type="radio" id="easy" name="difficulty" value="easy">
+        <label for="easy">Easy</label>
+        <input type="radio" id="medium" name="difficulty" value="medium">
+        <label for="medium">Medium</label>
+        <input type="radio" id="hard" name="difficulty" value="hard">
+        <label for="hard">Hard</label>
+        <br>
+        <button id="start-game">Start Game</button>
+    </div>
+
+    <!-- หน้าจอเล่นเกม -->
+    <div id="game-screen" class="screen">
+        <h2 id="player-display"></h2>
+        <h3>Guess the word:</h3>
+        <p id="word-display"></p>
+        <p>Incorrect Guesses: <span id="incorrect-guesses">0</span></p>
+        <p>Guessed Letters: <span id="letters-guessed"></span></p>
+        <input type="text" id="guess-input" maxlength="1" autocomplete="off">
+        <button id="submit-guess">Submit Guess</button>
+        <svg id="hangman" width="200" height="200">
+            <!-- ภาพ Hangman -->
+        </svg>
+    </div>
+
+    <!-- หน้าจอแสดงผลลัพธ์ -->
+    <div id="game-over-screen" class="screen">
+        <h2 id="game-result"></h2>
+        <p id="revealed-word"></p>
+        <button id="play-again">Play Again</button>
+        <button onclick="switchScreen('score-screen')">View Scoreboard</button>
+    </div>
+
+    <!-- หน้าจอแสดงคะแนน -->
+    <div id="score-screen" class="screen">
+        <h2>Scoreboard</h2>
+        <button id="sort-by-guesses">Sort by Incorrect Guesses</button>
+        <button id="sort-by-date">Sort by Date</button>
+        <table id="score-table">
+            <thead>
+                <tr>
+                    <th>Player</th>
+                    <th>Incorrect Guesses</th>
+                    <th>Word Length</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button onclick="switchScreen('start-screen')">Back to Start</button>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
