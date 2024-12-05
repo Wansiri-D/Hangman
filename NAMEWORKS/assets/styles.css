@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  #game-container, #intro-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+  }
+  
+  button {
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover:not(:disabled) {
+    background-color: #45a049;
+  }
+  
+  #keyboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  button {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    font-size: 18px;
+  }
+  
+  .wrong-guesses, .wrong-letters {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  #hangman-image img {
+    width: 200px;
+  }
+  
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+
+  
+
+  .keyboard-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
