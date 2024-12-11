@@ -68,6 +68,7 @@ body {
     margin: 0;
 }
 .menu-item {
+    list-style: none;
     background-color: #444;
     border-radius: 6px;
     padding: 10px;
@@ -225,8 +226,11 @@ body {
     justify-content: center;
     align-items: center;
 }
-.logo {
-    text-align: center;
+.header .logo img {
+    align-items: center;
+    width: 358px;
+    height: 141.17px;
+    padding: 32px 16px 16px 10px;
 }
 .receipt {
     width: 300px;

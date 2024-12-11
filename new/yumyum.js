@@ -33,6 +33,7 @@ function renderMenu(menuData) {
     menuContainer.innerHTML = `
         <h1 class="menu-title">MENY</h1>
         <ul class="menu-section"></ul>
+        <ul class="menu-list"></ul>
     `;
 
     const menuSection = menuContainer.querySelector('.menu-section');
