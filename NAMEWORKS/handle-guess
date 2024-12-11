@@ -1,0 +1,20 @@
+const handleGuess = (button, letter) => {
+    button.disabled = true
+
+    if (currentWord.includes(letter)) {
+        [...currentWord].forEach((char, index) => {
+            if (char === letter) {
+                correctLetters.push(char);
+                wordDisplay.querySelectorAll("li")[index].innerText = char
+            }
+        })
+        if (correctLetters.length === currentWord.length) endGame(true)
+    } else {
+        wrongLetters.push(letter)
+        wrongGuessCount++
+        wrongLettersSpan.innerText = wrongLetters.join(", ")
+        hangmanImage.src = `images/${wrongGuessCount}.png`;
+        guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
+        if (wrongGuessCount === maxGuesses) endGame(false)
+    }
+};

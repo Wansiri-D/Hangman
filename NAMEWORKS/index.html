@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hangman Game</title>
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Link to external JavaScript files -->
+  <script type="module" src="./js/script.js"></script>
+  <script type="module" src="./js/script.js"></script>
+</head>
+<body>
+  <!-- Main game container -->
+  <div id="intro-container">
+    <h1>Hangman Game</h1>
+    <p>Enter your name and choose a level:</p>
+    <input type="text" id="player-name" placeholder="Enter your name" required>
+    <div>
+      <label for="difficulty">Choose level:</label>
+      <select id="difficulty">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </div>
+    <button id="start-button">Start Game</button>
+    <p id="name-error" style="color: red; display: none;">Please enter your name to start the game!</p>
+  </div>
+
+  <!-- Game container -->
+  <div id="game-container" style="display: none;">
+    <h1>Hangman Game</h1>
+    <div id="hangman-image">
+      <img id="hangman-img" src="images/0.png" alt="Hangman">
+    </div>
+    <div id="word-container"></div>
+    <div class="wrong-guesses">Incorrect guesses: <b>0 / 6</b></div>
+    <div class="wrong-letters"> Wrong Letters:</div>
+    <div id="keyboard-container"></div>
+    <p id="game-status"></p>
+    <button id="play-again-button" style="display: none;">Play Again</button>
+    <button id="reset-button" style="display: none;">Reset Game</button>
+    <button id="show-high-scores">Show High Scores</button>
+  </div>
+
+  <!-- High Scores Popup -->
+  <div id="high-scores-popup" class="popup hidden">
+    <div class="popup-content">
+      <h2>High Scores</h2>
+      <ul id="high-scores-list"></ul>
+      <button id="close-popup">Close</button>
+    </div>
+  </div>
+</body>
+</html>
