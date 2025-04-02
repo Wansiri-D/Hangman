@@ -5,12 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hangman Game</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
   <script type="module" src="script.js"></script>
+  <script type="module" src="highscore-dialog.js"></script>
+  <script type="module" src="svenska-ord.js"></script>
 </head>
 <body>
   <div id="intro-container">
     <h1>Hangman Game</h1>
-    <p>Enter your name and choose a  level:</p>
+    <p>Enter your name and choose a level:</p>
     <input type="text" id="player-name" placeholder="Enter your name" />
     <div>
       <label for="difficulty">Choose level:</label>
@@ -41,10 +44,20 @@
     <button id="show-high-scores">Show High Scores</button>
   </div>
 
-  <div id="high-scores-container">
+  <!-- <div id="high-scores-container">
     <h2>High Scores</h2>
     <ul id="high-scores-list"></ul>
-  </div>
+  </div> -->
+
+	<div id="high-scores-popup" class="popup hidden">
+    	<div class="popup-content">
+        	<h2>High Scores</h2>
+			<button id="sort-by-score"> Sort by Score </button>
+			<button id="sort-by-date"> Sort by Date </button>
+        	<ul id="high-scores-list"></ul>
+        	<button id="close-popup">Close</button>
+    	</div>
+	</div>
 
 </body>
 </html>
