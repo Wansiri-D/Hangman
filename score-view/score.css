@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(45deg, #ffcccb, #d5f4e6);
+    padding: 0 20px;
+    flex-direction: column;
+}
+
+.result-modal, #scoreboard {
+    width: 100%;
+    max-width: 800px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+}
+
+.result-content h1, h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333333;
+}
+
+.result-content p, .score-entry {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #555555;
+}
+
+.result-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.result-buttons button, #back-to-game {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ffffff;
+    background: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.result-buttons button:hover, #back-to-game:hover {
+    background: #0056b3;
+}
+
+/* Style for the scoreboard table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
