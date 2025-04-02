@@ -1,63 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hangman Game</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
-  <script type="module" src="script.js"></script>
-  <script type="module" src="highscore.js"></script>
-  <script type="module" src="svkword.js"></script>
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Hangman Game</title> 
+  <link rel="stylesheet" href="style.css"> 
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> 
 </head>
+
 <body>
-  <div id="intro-container">
-    <h1>Hangman Game</h1>
-    <p>Enter your name and choose a level:</p>
-    <input type="text" id="player-name" placeholder="Enter your name" />
-    <div>
-      <label for="difficulty">Choose level:</label>
-      <select id="difficulty">
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
+  <div id="intro-container"> 
+    <h1>Hangman Game</h1> 
+    <p>Enter your name and choose a level:</p> 
+    <input type="text" id="player-name" placeholder="Enter your name" aria-label="Player name"> 
+    <div> 
+      <label for="difficulty">Choose level:</label> 
+      <select id="difficulty" aria-label="Difficulty level"> 
+        <option value="easy">Easy</option> 
+        <option value="medium">Medium</option> 
+        <option value="hard">Hard</option> 
       </select>
     </div>
-    <button id="start-button">Start Game</button>
-    <p id="name-error" style="color: red; display: none;">Please enter your name to start the game!</p>
+    <button id="start-button" class="button" aria-label="Start the Hangman game">Start Game</button> 
+    <p id="name-error" style="color: red; display: none;">Please enter your name to start the game!</p> 
   </div>
 
-  <div id="game-container" style="display: none;">
-    <h1>Hangman Game</h1>
-    <div id="score-container">
-      <p>Score: <span id="score">0</span></p>
+  <div id="game-container" style="display: none;"> 
+    <h1>Hangman Game</h1> 
+    <div id="score-container"> 
+      <p>Score: <span id="score">0</span></p> 
     </div>
-    <div id="hangman-image">
-      <img id="hangman-img" src="images/0.png" alt="Hangman">
+    <div id="hangman-image"> 
+      <img id="hangman-img" src="images/0.png" alt="Hangman"> 
     </div>
-    <div id="word-container"></div>
-    <div id="wrong-guesses"></div>
-    <div id="keyboard-container"></div>
-    <p id="game-status"></p>
-    <button id="play-again-button" style="display: none;">Play Again</button>
-    <button id="reset-button" style="display: none;">Reset Game</button>
-    <button id="show-high-scores">Show High Scores</button>
+    <div id="word-container"></div> 
+    <div id="wrong-guesses"></div> 
+    <div id="keyboard-container"></div> 
+    <p id="game-status"></p> 
+    <button id="play-again-button" class="button" style="display: none;" aria-label="Play again">Play Again</button> 
+    <button id="reset-button" class="button" style="display: none;" aria-label="Reset game">Reset Game</button> 
+    <button id="show-high-scores" class="button" aria-label="Show high scores">Show High Scores</button>
   </div>
 
-  <!-- <div id="high-scores-container">
-    <h2>High Scores</h2>
-    <ul id="high-scores-list"></ul>
-  </div> -->
+  <div id="high-scores-popup" class="popup hidden"> 
+    <div class="popup-content"> 
+      <h2>High Scores</h2> 
+      <button id="sort-by-score" class="button" aria-label="Sort high scores by score">Sort by Score</button> 
+      <button id="sort-by-date" class="button" aria-label="Sort high scores by date">Sort by Date</button> 
+      <ul id="high-scores-list"></ul> 
+      <button id="close-popup" class="button" aria-label="Close high scores popup">Close</button> 
+    </div>
+  </div>
 
-	<div id="high-scores-popup" class="popup hidden">
-    	<div class="popup-content">
-        	<h2>High Scores</h2>
-			<button id="sort-by-score"> Sort by Score </button>
-			<button id="sort-by-date"> Sort by Date </button>
-        	<ul id="high-scores-list"></ul>
-        	<button id="close-popup">Close</button>
-    	</div>
-	</div>
-
+  <script type="module" src="script.js" defer></script> 
+  <script type="module" src="highscore.js" defer></script> 
+  <script type="module" src="svkword.js" defer></script> 
 </body>
 </html>
