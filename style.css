@@ -183,6 +183,8 @@ display:none;
 
 .popup.hidden {
   display: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .popup-content {
