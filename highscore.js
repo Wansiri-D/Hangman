@@ -1,18 +1,11 @@
+export const highScoresPopup = document.querySelector('#high-scores-popup'); 
+export const closePopupButton = document.querySelector('#close-popup'); 
+export const sortByScoreButton = document.querySelector('#sort-by-score'); 
+export const sortByDateButton = document.querySelector('#sort-by-date'); 
 
-const highScoresPopup = document.querySelector('#high-scores-popup'); 
-const closePopupButton = document.querySelector('#close-popup'); 
-const showHighScoresButton = document.querySelector('#show-high-scores');
-const sortByScoreButton = document.querySelector('#sort-by-score'); 
-const sortByDateButton = document.querySelector('#sort-by-date'); 
-
-if (!highScoresPopup || !closePopupButton || !showHighScoresButton || !sortByScoreButton || !sortByDateButton) { // ตรวจสอบว่ามี element ครบหรือไม่
-  console.error('One or more High Scores elements not found in the DOM'); // แสดงข้อผิดพลาดใน console ถ้าขาด element
-} else { 
-  showHighScoresButton.addEventListener('click', () => { // เพิ่มตัวจัดการเมื่อคลิกปุ่มแสดงคะแนนสูงสุด
-    displayHighScores('score');
-    highScoresPopup.classList.remove('hidden'); 
-  });
-
+if (!highScoresPopup || !closePopupButton || !sortByScoreButton || !sortByDateButton) {
+  console.error('One or more High Scores elements not found in the DOM');
+} else {
   closePopupButton.addEventListener('click', () => { 
     highScoresPopup.classList.add('hidden'); 
   });
@@ -36,8 +29,8 @@ if (!highScoresPopup || !closePopupButton || !showHighScoresButton || !sortBySco
   });
 }
 
-function displayHighScores(sortBy = 'score') { 
-  const highScores = JSON.parse(localStorage.getItem('highScores')) || []; // ดึงคะแนนสูงสุดจาก localStorage หรือสร้างอาร์เรย์ว่าง
+export function displayHighScores(sortBy = 'score') { 
+  const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
   const highScoresList = document.querySelector('#high-scores-list'); 
   highScoresList.innerHTML = '';
 
@@ -51,10 +44,10 @@ function displayHighScores(sortBy = 'score') {
   if (sortBy === 'score') { 
     highScores.sort((a, b) => b.score - a.score); 
   } else if (sortBy === 'date') { 
-    highScores.sort((a, b) => new Date(b.date) - new Date(a.date)); 
+    highScores.sort((a, b) => new Date(b.date) - new Date(a.date)); // ใหม่ไปเก่า
   }
 
-  highScores.forEach(scoreData => { // วนลูปแสดงคะแนนแต่ละอัน
+  highScores.forEach(scoreData => {
     const li = document.createElement('li'); 
     li.innerHTML = `
       <strong>${scoreData.name}</strong>: ${scoreData.score} points 
@@ -62,4 +55,6 @@ function displayHighScores(sortBy = 'score') {
     `;
     highScoresList.appendChild(li);
   });
+
+  highScoresPopup.classList.remove('hidden'); // แสดงป๊อปอัพเมื่อเรียกฟังก์ชัน
 }

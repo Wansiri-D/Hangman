@@ -1,4 +1,5 @@
 import { words } from './svkword.js';
+import { displayHighScores } from './highscore.js'; // นำเข้า displayHighScores จาก highscore.js
 
 const wordContainer = document.querySelector('#word-container');
 const wrongGuessesContainer = document.querySelector('#wrong-guesses');
@@ -12,10 +13,9 @@ const gameContainer = document.querySelector('#game-container');
 const nameError = document.querySelector('#name-error');
 const hangmanImage = document.querySelector('#hangman-img');
 const keyboardContainer = document.querySelector('#keyboard-container');
-const highScoresList = document.querySelector('#high-scores-list');
 const playAgainButton = document.querySelector('#play-again-button');
 const resetButton = document.querySelector('#reset-button');
-const showHighScoresButton = document.querySelector('#show-high-scores-button');
+const showHighScoresButton = document.querySelector('#show-high-scores');
 
 const hangmanImages = [
   'images/0.png',
@@ -46,19 +46,17 @@ function startGame() {
   }
 
   nameError.style.display = 'none';
-
   introContainer.style.display = 'none';
   gameContainer.style.display = 'block';
 
   selectWord();
-  displayWord();
+  updateGameUI();
   createKeyboard();
   updateScore();
 }
 
 function selectWord() {
   let minLength, maxLength;
-
 
   if (currentDifficulty === 'easy') {
     minLength = 2;
@@ -71,7 +69,6 @@ function selectWord() {
     maxLength = 17;
   }
 
-
   const filteredWords = words.filter(word => {
     const normalizedWord = word.toLowerCase();
     const isValidWord = /^[a-ö]+$/.test(normalizedWord);
@@ -82,18 +79,12 @@ function selectWord() {
     );
   });
 
-  //   console.log('Filtered words:', filteredWords);
-
-
   if (filteredWords.length === 0) {
-    console.error('No valid words found for the current difficulty.');
+    gameStatus.textContent = "No words available for this difficulty!";
     return;
   }
 
-
   selectedWord = filteredWords[Math.floor(Math.random() * filteredWords.length)];
-  //   console.log('Selected word:', selectedWord);
-
   guessedLetters = [];
   wrongGuesses = 0;
   gameOver = false;
@@ -113,11 +104,14 @@ function displayWord() {
 }
 
 function displayWrongGuesses() {
-  const wrongLetters = guessedLetters.filter((letter) => !selectedWord.includes(letter))
+  const wrongLetters = guessedLetters.filter(letter => !selectedWord.includes(letter));
+  wrongGuessesContainer.textContent = `Wrong Guesses (${wrongGuesses}/${maxWrongGuesses}): ${wrongLetters.join(', ').toUpperCase()}`;
+}
 
-  wrongGuessesContainer.textContent = `Wrong Guesses (${wrongGuesses}/${maxWrongGuesses}): ${wrongLetters.join(', ').toUpperCase()}`
-
-  /*wrongGuessesContainer.textContent = `Wrong Guesses: ${wrongGuesses}`;*/
+function updateGameUI() {
+  displayWord();
+  displayWrongGuesses();
+  hangmanImage.src = hangmanImages[wrongGuesses];
 }
 
 function handleKeyPress(letter, button = null) {
@@ -129,21 +123,19 @@ function handleKeyPress(letter, button = null) {
   if (button) button.disabled = true;
 
   if (selectedWord.includes(letter)) {
-    displayWord(); // Update the word display
-    if (button) button.style.backgroundColor = "lightgreen"; // Style the button if the guess is correct
+    if (button) button.style.backgroundColor = "lightgreen";
   } else {
-    if (button) button.style.backgroundColor = "#f08080"; // Style the button if the guess is incorrect
+    if (button) button.style.backgroundColor = "#f08080";
     wrongGuesses++;
-    displayWrongGuesses(); // Update the wrong guesses display
-    hangmanImage.src = hangmanImages[wrongGuesses]; // Update hangman image
   }
+
+  updateGameUI();
 
   if (wrongGuesses >= maxWrongGuesses) {
     gameOver = true;
     gameLost();
   }
 }
-
 
 function createKeyboard() {
   const alphabet = 'abcdefghijklmnopqrstuvwxyzåäö'.split('');
@@ -157,31 +149,27 @@ function createKeyboard() {
   });
 }
 
-
 function updateScore() {
-  scoreContainer.textContent = `Score: ${score}`;
+  scoreContainer.textContent = score; // แก้จาก textContent = `Score: ${score}` เพราะ HTML มี "Score: " อยู่แล้ว
 }
 
 function gameWon() {
-	gameOver = true;
-	gameStatus.innerHTML = `You won!<br>Press the reset-button to change difficulty.`;
-	score = (maxWrongGuesses - wrongGuesses) * 10;
-	saveHighScore();
-	playAgainButton.style.display = 'inline-block';
-	resetButton.style.display = 'inline-block';
-  }
-  
+  gameOver = true;
+  gameStatus.innerHTML = `You won!<br>Press the reset-button to change difficulty.`;
+  score = (maxWrongGuesses - wrongGuesses) * 10 + selectedWord.length * 5; // ปรับคะแนนให้สัมพันธ์กับความยาวคำ
+  saveHighScore();
+  playAgainButton.style.display = 'inline-block';
+  resetButton.style.display = 'inline-block';
+}
 
 function gameLost() {
-	gameOver = true;
-	gameStatus.innerHTML = `Game Over! The word was: ${selectedWord}<br>Press the reset-button to change difficulty.`;
-	score = 0;
-	saveHighScore();
-	playAgainButton.style.display = 'inline-block';
-	resetButton.style.display = 'inline-block';
+  gameOver = true;
+  gameStatus.innerHTML = `Game Over! The word was: ${selectedWord}<br>Press the reset-button to change difficulty.`;
+  score = 0;
+  saveHighScore();
+  playAgainButton.style.display = 'inline-block';
+  resetButton.style.display = 'inline-block';
 }
-  
-  
 
 function saveHighScore() {
   const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
@@ -198,32 +186,6 @@ function saveHighScore() {
   if (highScores.length > 10) highScores.pop();
 
   localStorage.setItem('highScores', JSON.stringify(highScores));
-  console.log(JSON.parse(localStorage.getItem('highScores')));
-}
-
-function displayHighScores(sortBy = 'score') {
-  const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
-  const highScoresList = document.querySelector('#high-scores-list');
-  highScoresList.innerHTML = '';
-
-  if (sortBy === 'score') {
-    highScores.sort((a, b) => b.score - a.score);
-  } else if (sortBy === 'date') {
-    highScores.sort((a, b) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
-      return dateA - dateB;
-    });
-  }
-
-  highScores.forEach(scoreData => {
-    const li = document.createElement('li');
-    li.innerHTML = `
-		<strong>${scoreData.name}</strong>: ${scoreData.score} points 
-		<br><small>Difficulty: ${scoreData.difficulty} | Played on: ${scoreData.date}</small>
-	  `;
-    highScoresList.appendChild(li);
-  });
 }
 
 function playAgain() {
@@ -234,17 +196,12 @@ function playAgain() {
   updateScore();
 
   selectWord();
-  displayWord();
-  displayWrongGuesses();
+  updateGameUI();
   createKeyboard();
   gameStatus.textContent = '';
   playAgainButton.style.display = 'none';
   resetButton.style.display = 'inline-block';
 }
-
-startButton.addEventListener('click', startGame);
-keyboardContainer.addEventListener('click', handleKeyPress);
-playAgainButton.addEventListener('click', playAgain);
 
 function resetGame() {
   guessedLetters = [];
@@ -254,7 +211,7 @@ function resetGame() {
   playerName = '';
   selectedWord = '';
 
-  scoreContainer.textContent = 'Score: 0';
+  scoreContainer.textContent = '0'; // แก้ให้สอดคล้องกับ HTML
   hangmanImage.src = hangmanImages[0];
 
   wordContainer.textContent = '';
@@ -268,10 +225,10 @@ function resetGame() {
   resetButton.style.display = 'none';
 
   keyboardContainer.innerHTML = '';
-
   playerNameInput.value = '';
-
-  displayHighScores();
 }
 
+startButton.addEventListener('click', startGame);
+playAgainButton.addEventListener('click', playAgain);
 resetButton.addEventListener('click', resetGame);
+showHighScoresButton.addEventListener('click', () => displayHighScores('score')); // เรียกจาก highscore.js
