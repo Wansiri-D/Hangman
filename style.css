@@ -1,4 +1,3 @@
-
 body {
   font-family: Arial, sans-serif;
   text-align: center;
@@ -18,7 +17,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 5px solod black;
+  border: 5px solid black; /* แก้ typo จาก solod เป็น solid */
 }
 
 #intro-container input,
@@ -39,13 +38,12 @@ h1 {
   border: none;
   border-radius: 5px;
   margin-top: 10px;
-  cursor: pointer;
   transition: transform 0.3s ease;
 }
 
 #start-button:hover {
   background-color: #0056b3;
-  transform: scale(1.1)
+  transform: scale(1.1);
 }
 
 #name-error {
@@ -68,9 +66,8 @@ h1 {
 #score-container {
   font-size: 20px;
   margin-bottom: 20px;
-display:none;
+  /* ลบ display: none; ออกเพื่อให้คะแนนแสดงผล */
 }
-
 
 #word-container {
   font-size: 36px;
@@ -130,7 +127,6 @@ display:none;
   cursor: pointer;
   margin-top: 20px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
   transition: transform 0.3s ease;
 }
 
@@ -138,7 +134,7 @@ display:none;
 #reset-button:hover,
 #show-high-scores:hover {
   background-color: #0056b3;
-  transform: scale(1.1)
+  transform: scale(1.1);
 }
 
 #play-again-button {
@@ -222,7 +218,6 @@ display:none;
   background-color: #0056b3;
 }
 
-
 @media (max-width: 500px) {
   #intro-container,
   #game-container {
@@ -231,7 +226,6 @@ display:none;
   }
 
   #keyboard-container {
-    /* flex-direction: column; */
     gap: 5px;
   }
 
